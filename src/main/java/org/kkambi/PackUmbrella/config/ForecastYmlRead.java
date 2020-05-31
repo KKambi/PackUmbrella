@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource(value = "classpath:forecast.yml", factory = YamlPropertySourceFactory.class)
-@ConfigurationProperties(prefix = "forecast")
+@ConfigurationProperties(prefix = "api")
 public class ForecastYmlRead {
 
     private String serviceKey;
