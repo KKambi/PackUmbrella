@@ -1,0 +1,11 @@
+# 공통 설정
+spring:
+  profiles:
+    active: local
+
+--- #dev 환경
+spring:
+  profiles: dev
+logging:
+  level:
+    root: info
