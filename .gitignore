@@ -1,4 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
+### Custom template
+/src/main/resources/forecast.yml
+
 ### Gradle template
 .gradle
 /build/
