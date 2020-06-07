@@ -1,20 +1,16 @@
 package org.kkambi.PackUmbrella.api.forecast;
 
 import org.kkambi.PackUmbrella.config.ForecastYmlRead;
+import org.kkambi.PackUmbrella.service.ForecastServiceImpl;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriBuilder;
-
-import java.net.URI;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -24,9 +20,9 @@ public class ForecastController {
 
     private final RestTemplateBuilder restTemplateBuilder;
 
-    private final ForecastService forecastService;
+    private final ForecastServiceImpl forecastService;
 
-    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastService forecastService, ForecastYmlRead forecastYmlRead){
+    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastServiceImpl forecastService, ForecastYmlRead forecastYmlRead){
         this.restTemplateBuilder = restTemplateBuilder;
         this.forecastService = forecastService;
         this.forecastYmlRead = forecastYmlRead;
@@ -57,9 +53,5 @@ public class ForecastController {
         String response = (String) responseEntity.getBody();
         System.out.println(response);
         return response;
-
-        //1. 요청시각을 구해 가장 가까운 이전 예보 시각으로 JSON
-
-        //2. 해당 시각으로 동네예보 API 서버에 요청할 JSON 데이터를 구성한다.
     }
 }
