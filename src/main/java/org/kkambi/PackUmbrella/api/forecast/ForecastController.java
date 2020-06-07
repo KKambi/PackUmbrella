@@ -1,5 +1,6 @@
 package org.kkambi.PackUmbrella.api.forecast;
 
+import org.kkambi.PackUmbrella.config.ForecastYmlRead;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,16 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/v1")
 public class ForecastController {
 
+    private final ForecastYmlRead forecastYmlRead;
+
     private final RestTemplateBuilder restTemplateBuilder;
 
     private final ForecastService forecastService;
 
-    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastService forecastService){
+    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastService forecastService, ForecastYmlRead forecastYmlRead){
         this.restTemplateBuilder = restTemplateBuilder;
         this.forecastService = forecastService;
+        this.forecastYmlRead = forecastYmlRead;
     }
 
     @GetMapping("/forecast")
@@ -40,7 +44,7 @@ public class ForecastController {
         UriBuilder uriBuilder = uriBuilderFactory.builder();
         uriBuilder
                 .path("/1360000/VilageFcstInfoService/getVilageFcst")
-                .queryParam("ServiceKey", "[인증키]")
+                .queryParam("ServiceKey", forecastYmlRead.getServiceKey())
                 .queryParam("pageNo", "1")
                 .queryParam("numOfRows", "10")
                 .queryParam("dataType", "JSON")

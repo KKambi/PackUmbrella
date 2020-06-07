@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import java.util.HashMap;
+
 @SpringBootApplication
 public class Application {
     private static final String PROPERTIES =
@@ -15,5 +17,6 @@ public class Application {
         new SpringApplicationBuilder(Application.class)
                 .properties(PROPERTIES)
                 .run(args);
+
     }
 }
