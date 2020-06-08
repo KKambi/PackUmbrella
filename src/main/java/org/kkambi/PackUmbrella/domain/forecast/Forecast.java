@@ -42,6 +42,8 @@ public class Forecast {
         }
     }
 
+    private Forecast() {}
+
     private Forecast(Builder builder) {
         this.POP = builder.POP;
         this.PTY = builder.PTY;
