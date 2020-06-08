@@ -1,4 +1,4 @@
-package org.kkambi.PackUmbrella.domain;
+package org.kkambi.PackUmbrella.domain.forecast;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -11,7 +11,7 @@ public class Forecast {
 
     private String POP;     //강수확률
 
-    private String PYT;     //강수형태
+    private String PTY;     //강수형태
 
     private String T3H;     //3시간 기온
 
@@ -23,12 +23,12 @@ public class Forecast {
         this.POP = POP;
     }
 
-    public String getPYT() {
-        return PYT;
+    public String getPTY() {
+        return PTY;
     }
 
-    public void setPYT(String PYT) {
-        this.PYT = PYT;
+    public void setPTY(String PTY) {
+        this.PTY = PTY;
     }
 
     public String getT3H() {
