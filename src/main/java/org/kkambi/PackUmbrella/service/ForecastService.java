@@ -1,6 +1,6 @@
 package org.kkambi.PackUmbrella.service;
 
-import org.kkambi.PackUmbrella.domain.ForecastInfo;
+import org.kkambi.PackUmbrella.domain.Forecast;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class ForecastService {
     }
 
     //TODO 4. 가장 가까운 발표 시각으로 요청하고 응답받기 -> 해당 응답값을 Controller에서 response하면 json응답!
-    ForecastInfo requestForecast(LocalDateTime forecastTime) {
+    Forecast requestForecast(LocalDateTime forecastTime) {
 
     }
 }
