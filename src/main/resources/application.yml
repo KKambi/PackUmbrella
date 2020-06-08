@@ -6,3 +6,6 @@ spring:
 --- #dev 환경
 spring:
   profiles: dev
+  redis:
+    port: 6379
+    url: localhost
