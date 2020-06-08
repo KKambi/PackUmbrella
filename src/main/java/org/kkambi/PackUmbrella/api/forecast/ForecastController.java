@@ -1,7 +1,7 @@
 package org.kkambi.PackUmbrella.api.forecast;
 
 import org.kkambi.PackUmbrella.config.ForecastYmlRead;
-import org.kkambi.PackUmbrella.service.ForecastServiceImpl;
+import org.kkambi.PackUmbrella.service.ForecastService;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +20,9 @@ public class ForecastController {
 
     private final RestTemplateBuilder restTemplateBuilder;
 
-    private final ForecastServiceImpl forecastService;
+    private final ForecastService forecastService;
 
-    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastServiceImpl forecastService, ForecastYmlRead forecastYmlRead){
+    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastService forecastService, ForecastYmlRead forecastYmlRead){
         this.restTemplateBuilder = restTemplateBuilder;
         this.forecastService = forecastService;
         this.forecastYmlRead = forecastYmlRead;
