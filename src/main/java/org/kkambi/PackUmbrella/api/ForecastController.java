@@ -1,4 +1,4 @@
-package org.kkambi.PackUmbrella.api.forecast;
+package org.kkambi.PackUmbrella.api;
 
 import org.kkambi.PackUmbrella.config.ForecastYmlRead;
 import org.kkambi.PackUmbrella.service.ForecastService;
@@ -6,11 +6,14 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.UriBuilder;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -29,7 +32,7 @@ public class ForecastController {
     }
 
     @GetMapping("/forecast")
-    public String getForecast() {
+    public String getForecast(@RequestHeader("Date") LocalDateTime requestDateTime) {
         RestTemplate restTemplate = new RestTemplateBuilder().build();
 
         String callUri = "http://apis.data.go.kr";
