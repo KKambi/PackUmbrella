@@ -3,11 +3,15 @@ package org.kkambi.PackUmbrella.domain.forecast;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
+import java.time.LocalDateTime;
+
 @RedisHash
 public class Forecast {
 
     @Id
     private String id;
+
+    private LocalDateTime forecastDateTime;     //예측일시
 
     private String POP;     //강수확률
 
@@ -16,11 +20,18 @@ public class Forecast {
     private String T3H;     //3시간 기온
 
     public static class Builder {
+        private LocalDateTime forecastDateTime;     //예측일시
+
         private String POP;     //강수확률
 
         private String PTY;     //강수형태
 
         private String T3H;     //3시간 기온
+
+        public Builder forecastDateTime(LocalDateTime forecastDateTime) {
+            this.forecastDateTime = forecastDateTime;
+            return this;
+        }
 
         public Builder pop(String pop) {
             this.POP = pop;
@@ -45,9 +56,18 @@ public class Forecast {
     private Forecast() {}
 
     private Forecast(Builder builder) {
+        this.forecastDateTime = builder.forecastDateTime;
         this.POP = builder.POP;
         this.PTY = builder.PTY;
         this.T3H = builder.T3H;
+    }
+
+    public LocalDateTime getForecastDateTime() {
+        return forecastDateTime;
+    }
+
+    public void setForecastDateTime(LocalDateTime forecastDateTime) {
+        this.forecastDateTime = forecastDateTime;
     }
 
     public String getPOP() {
