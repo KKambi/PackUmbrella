@@ -62,6 +62,14 @@ public class Forecast {
         this.T3H = builder.T3H;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public LocalDateTime getForecastDateTime() {
         return forecastDateTime;
     }

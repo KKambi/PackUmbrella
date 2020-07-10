@@ -1,17 +1,9 @@
 package org.kkambi.PackUmbrella.api;
 
-import org.kkambi.PackUmbrella.config.ForecastYmlRead;
 import org.kkambi.PackUmbrella.service.ForecastService;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
-import org.springframework.web.util.UriBuilder;
 
 import java.time.LocalDateTime;
 
@@ -19,42 +11,14 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/v1")
 public class ForecastController {
 
-    private final ForecastYmlRead forecastYmlRead;
-
-    private final RestTemplateBuilder restTemplateBuilder;
-
     private final ForecastService forecastService;
 
-    public ForecastController(RestTemplateBuilder restTemplateBuilder, ForecastService forecastService, ForecastYmlRead forecastYmlRead){
-        this.restTemplateBuilder = restTemplateBuilder;
+    public ForecastController(ForecastService forecastService){
         this.forecastService = forecastService;
-        this.forecastYmlRead = forecastYmlRead;
     }
 
     @GetMapping("/forecast")
-    public String getForecast(@RequestHeader("Date") LocalDateTime requestDateTime) {
-        RestTemplate restTemplate = new RestTemplateBuilder().build();
+    public LocalDateTime getForecast() {
 
-        String callUri = "http://apis.data.go.kr";
-
-        DefaultUriBuilderFactory uriBuilderFactory = new DefaultUriBuilderFactory(callUri);
-        uriBuilderFactory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.NONE);
-
-        UriBuilder uriBuilder = uriBuilderFactory.builder();
-        uriBuilder
-                .path("/1360000/VilageFcstInfoService/getVilageFcst")
-                .queryParam("ServiceKey", forecastYmlRead.getServiceKey())
-                .queryParam("pageNo", "1")
-                .queryParam("numOfRows", "10")
-                .queryParam("dataType", "JSON")
-                .queryParam("base_date", "20200526")
-                .queryParam("base_time", "1400")
-                .queryParam("nx", "1")
-                .queryParam("ny", "1");
-
-        ResponseEntity responseEntity = restTemplate.exchange(uriBuilder.build(), HttpMethod.GET, null, String.class);
-        String response = (String) responseEntity.getBody();
-        System.out.println(response);
-        return response;
     }
 }
