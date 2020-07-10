@@ -2,6 +2,7 @@ package org.kkambi.PackUmbrella.domain.forecast;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ public class Forecast {
     @Id
     private String id;
 
+    @Indexed
     private LocalDateTime forecastDateTime;     //예측일시
 
     private String POP;     //강수확률
