@@ -1,0 +1,31 @@
+package org.kkambi.PackUmbrella.service;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDateTime;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class ForecastServiceTest {
+
+    @Autowired
+    private ForecastService forecastService;
+
+    @Test
+    public void test_calculateMainTime() {
+        //given
+        LocalDateTime tmp = LocalDateTime.of(2020, 7, 10, 13, 42, 23);
+
+        //when
+        LocalDateTime mainTime = forecastService.calculateMainTime(tmp);
+
+        //then
+        assertThat(mainTime.getHour()).isEqualTo(18);
+    }
+}
