@@ -18,14 +18,29 @@ public class ForecastServiceTest {
     private ForecastService forecastService;
 
     @Test
-    public void test_calculateMainTime() {
+    public void test_getMainDateTime() {
         //given
-        LocalDateTime tmp = LocalDateTime.of(2020, 7, 10, 13, 42, 23);
+        LocalDateTime currDateTime = LocalDateTime.of(2020, 7, 10, 13, 42, 23);
 
         //when
-        LocalDateTime mainTime = forecastService.calculateMainTime(tmp);
+        LocalDateTime mainDateTime = forecastService.getMainDateTime(currDateTime);
 
         //then
-        assertThat(mainTime.getHour()).isEqualTo(18);
+        assertThat(mainDateTime.getHour()).isEqualTo(18);
+    }
+
+    @Test
+    public void test_getForecastDateTime() {
+        //given
+        LocalDateTime currDateTime = LocalDateTime.of(2020, 7, 31, 23, 42, 23);
+
+        //when
+        LocalDateTime mainDateTime = forecastService.getMainDateTime(currDateTime);
+        LocalDateTime forecastDateTime = forecastService.getForecastDateTime(currDateTime, mainDateTime);
+
+        //then
+        assertThat(mainDateTime.getDayOfMonth()).isEqualTo(1);
+        assertThat(mainDateTime.getHour()).isEqualTo(6);
+        assertThat(forecastDateTime.getHour()).isEqualTo(23);
     }
 }
